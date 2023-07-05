@@ -16,11 +16,10 @@ export async function getBook(id: number) {
 
 export async function createBook(book: CreateBook) {
   const { title, author, publisher, purchaseDate, cover } = book;
-
-  const dateTimePurchaseDate = purchaseDate.toString() + "T00:00:00.000Z";
+  const validDate = new Date(purchaseDate);
   const result = await prisma.books.create({
     data: {
-      title, author, publisher, purchaseDate: dateTimePurchaseDate, cover
+      title, author, publisher, purchaseDate: validDate, cover
     }
   });
 
