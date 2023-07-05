@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model books {
+  id           Int      @id @unique @default(autoincrement())
+  title        String
+  author       String
+  publisher    String
+  purchaseDate DateTime @db.Timestamp(6)
+  cover        String
+  read         Boolean  @default(false)
+  grade        Int?
+  review       String?
+  
+}
